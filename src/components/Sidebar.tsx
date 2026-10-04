@@ -5,15 +5,17 @@ import {
   CalendarDays, 
   Layers, 
   CheckCircle2, 
-  Settings as SettingsIcon,
-  Plus,
-  Sun,
-  Moon,
-  Sparkles,
-  ChevronLeft,
-  ChevronRight
+  Settings as SettingsIcon, 
+  Plus, 
+  Sun, 
+  Moon, 
+  Sparkles, 
+  ChevronLeft, 
+  ChevronRight, 
+  LogOut 
 } from 'lucide-react';
 import { useTodo } from '../context/TodoContext';
+import { useAuth } from '../context/AuthContext';
 import type { ActiveView } from '../types';
 import { getIconComponent } from './IconPicker';
 import { getTodayDateString } from '../utils/dateUtils';
@@ -36,6 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
     setSelectedDate
   } = useTodo();
 
+  const { currentUser, signOut } = useAuth();
   const todayStr = getTodayDateString();
 
   const navItems: { id: ActiveView; label: string; icon: React.ComponentType<{ size?: number }>; badge?: number | string }[] = [
@@ -87,6 +90,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
     const nextTheme = settings.theme === 'dark' ? 'light' : 'dark';
     updateSettings({ theme: nextTheme });
   };
+
+  const userInitials = currentUser?.name
+    ? currentUser.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()
+    : 'U';
 
   return (
     <aside className={`app-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
@@ -196,8 +203,31 @@ export const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, onToggleCollapse 
         </div>
       )}
 
-      {/* Sidebar Footer */}
+      {/* Sidebar User Profile & Footer */}
       <div className="sidebar-footer">
+        {currentUser && !isCollapsed && (
+          <div className="sidebar-user-card">
+            <div 
+              className="sidebar-user-avatar"
+              style={{ backgroundColor: currentUser.avatarColor || '#6366F1' }}
+            >
+              <span>{userInitials}</span>
+            </div>
+            <div className="sidebar-user-info">
+              <span className="sidebar-user-name">{currentUser.name}</span>
+              <span className="sidebar-user-email">{currentUser.email}</span>
+            </div>
+            <button
+              type="button"
+              className="sidebar-signout-btn"
+              onClick={signOut}
+              title="Sign Out"
+            >
+              <LogOut size={14} />
+            </button>
+          </div>
+        )}
+
         <button
           type="button"
           className="sidebar-footer-theme-btn"

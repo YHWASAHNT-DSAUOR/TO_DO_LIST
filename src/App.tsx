@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { TodoProvider, useTodo } from './context/TodoContext';
+import { AuthScreen } from './components/AuthScreen';
 import { Header } from './components/Header';
 import { Sidebar } from './components/Sidebar';
 import { BottomNav } from './components/BottomNav';
@@ -18,8 +20,21 @@ import { SettingsView } from './views/SettingsView';
 import './App.css';
 
 const MainLayout: React.FC = () => {
-  const { activeView } = useTodo();
+  const { isAuthenticated, currentUser } = useAuth();
+  const { activeView, updateSettings } = useTodo();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  // Sync authenticated user's name with todo context settings
+  useEffect(() => {
+    if (currentUser?.name) {
+      updateSettings({ userName: currentUser.name });
+    }
+  }, [currentUser, updateSettings]);
+
+  // If user is not logged in, show the AuthScreen first
+  if (!isAuthenticated) {
+    return <AuthScreen />;
+  }
 
   const renderActiveView = () => {
     switch (activeView) {
@@ -70,9 +85,11 @@ const MainLayout: React.FC = () => {
 
 export function App() {
   return (
-    <TodoProvider>
-      <MainLayout />
-    </TodoProvider>
+    <AuthProvider>
+      <TodoProvider>
+        <MainLayout />
+      </TodoProvider>
+    </AuthProvider>
   );
 }
 

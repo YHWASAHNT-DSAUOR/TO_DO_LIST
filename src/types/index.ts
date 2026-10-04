@@ -32,6 +32,7 @@ export interface Subtask {
 export interface Task {
   id: string;
   topicId: string;
+  userId?: string;
   title: string;
   description?: string;
   date: string; // Format: YYYY-MM-DD
@@ -50,6 +51,7 @@ export interface Task {
 
 export interface Topic {
   id: string;
+  userId?: string;
   name: string;
   description?: string;
   icon: string; // Lucide icon name or emoji
@@ -57,6 +59,16 @@ export interface Topic {
   order: number;
   collapsed?: boolean;
   createdAt: string;
+}
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  password?: string;
+  createdAt: string;
+  avatarColor: string;
+  routineFocus?: string;
 }
 
 export interface AppSettings {
