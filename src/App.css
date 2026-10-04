@@ -3314,6 +3314,155 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ==========================================================================
+   PWA INSTALL BANNER & IOS GUIDE
+   ========================================================================== */
+
+.pwa-install-banner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(99, 102, 241, 0.12));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-lg);
+  margin-bottom: 20px;
+  animation: slideInUp 0.3s ease-out;
+}
+
+.pwa-banner-icon {
+  color: var(--status-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pwa-banner-content {
+  flex: 1;
+}
+
+.pwa-banner-content h4 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.pwa-banner-content p {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.pwa-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pwa-install-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  background-color: var(--status-success);
+  color: #FFFFFF;
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: transform var(--transition-fast);
+}
+
+.pwa-install-btn:hover {
+  transform: translateY(-1px);
+}
+
+.pwa-dismiss-btn {
+  color: var(--text-muted);
+  padding: 4px;
+}
+
+.pwa-dismiss-btn:hover {
+  color: var(--text-primary);
+}
+
+.ios-install-guide-modal {
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--bg-modal);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-modal);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-guide-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ios-guide-icon-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--accent-glow);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ios-guide-header h3 {
+  flex: 1;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.ios-guide-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--bg-card-sub);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.ios-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.ios-step-number {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ios-guide-gotit-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 @media (max-width: 860px) {
   .app-sidebar {
     display: none;
@@ -3355,3 +3504,5 @@
     width: 68px;
   }
 }
+
+

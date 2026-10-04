@@ -6,6 +6,7 @@ import { BottomNav } from './components/BottomNav';
 import { QuickAddModal } from './components/QuickAddModal';
 import { SearchModal } from './components/SearchModal';
 import { NotificationToastContainer } from './components/NotificationToast';
+import { InstallAppBanner } from './components/InstallAppBanner';
 
 import { TodayView } from './views/TodayView';
 import { TimelineView } from './views/TimelineView';
@@ -51,6 +52,7 @@ const MainLayout: React.FC = () => {
       <div className={`app-main-viewport ${isSidebarCollapsed ? 'sidebar-collapsed' : ''}`}>
         <Header />
         <main className="app-content-container">
+          <InstallAppBanner />
           {renderActiveView()}
         </main>
       </div>
